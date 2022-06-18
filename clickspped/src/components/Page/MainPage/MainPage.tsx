@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TestBox from "../../TestBox/TestBox";
 
 const MainBox = styled.div`
   display: flex;
@@ -50,6 +51,7 @@ export default function MainPage() {
       <Title>너의 속도가 보여</Title>
       <SubTitle>본격 작명센스 개구린 게이머 피지컬 테스트</SubTitle>
       <GuideLine />
+      <TestBox />
     </MainBox>
   );
 }
