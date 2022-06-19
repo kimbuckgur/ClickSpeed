@@ -17,7 +17,7 @@ const Title = styled.p`
   font-weight: 800;
   font-size: 40px;
   line-height: 45px;
-  color: #3068d3;
+  color: #e03131;
 
   margin: 0px;
   margin-top: 100px;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import test1 from "../../assets/svg/RRIcon/RRoff.svg";
+import test2 from "../../assets/svg/RRIcon/RRon.svg";
 import styled from "styled-components";
 
-const BackBlue = "#5387EC";
-const kBlue = "#3068D3";
+const kRed = "#E03131";
 const White = "#ffffff";
 const WhiteGray = "#F0F0F0";
 const kBlack = "#343434";
@@ -16,13 +17,14 @@ export default function TestBox() {
 
   const TestContainer = styled.button`
     cursor: pointer;
+    transition: all 200ms;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     border: none;
-    background-color: ${onHover ? BackBlue : White};
+    background-color: ${onHover ? kRed : White};
     box-shadow: 0px 6.54545px 16.3636px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     width: 240px;
@@ -39,7 +41,11 @@ export default function TestBox() {
   `;
 
   const TestSVGBox = styled.div`
-    border: 2px solid ${onHover ? White : kBlue};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid ${onHover ? White : kRed};
     border-radius: 1000px;
     width: 80px;
     height: 80px;
@@ -79,7 +85,7 @@ export default function TestBox() {
     >
       <TestSVGAria>
         <TestSVGBox>
-          <img />
+          <img src={onHover ? test2 : test1} />
         </TestSVGBox>
       </TestSVGAria>
       <TestGuideLine />
