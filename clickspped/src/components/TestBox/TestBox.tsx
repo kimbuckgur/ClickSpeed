@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import test1 from "../../assets/svg/RRIcon/RRoff.svg";
 import test2 from "../../assets/svg/RRIcon/RRon.svg";
 import styled from "styled-components";
+import "./testcss.css";
 
 const kRed = "#E03131";
 const White = "#ffffff";
@@ -10,21 +11,36 @@ const kBlack = "#343434";
 
 export default function TestBox() {
   const [onHover, setOnHover] = useState<boolean>(false);
+  const TestContainerRef = useRef<HTMLButtonElement>(null);
+  const TestSVGBoxRef = useRef<HTMLDivElement>(null);
+  const TestGuideLineRef = useRef<HTMLDivElement>(null);
+  const TestTextBoxRef = useRef<HTMLDivElement>(null);
 
-  const TraTest = styled.div`
-    transition: all 2s;
+  const TestAnimation = styled.div`
+    .BackGroudColor {
+      background-color: ${kRed};
+    }
+    .SVGColor {
+      border: 2px solid ${White};
+    }
+    .LineColor {
+      background-color: ${White};
+    }
+    .TextColor {
+      color: ${White};
+    }
   `;
 
   const TestContainer = styled.button`
     cursor: pointer;
-    transition: all 200ms;
+    transition: all 0.3s;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     border: none;
-    background-color: ${onHover ? kRed : White};
+    background-color: ${White};
     box-shadow: 0px 6.54545px 16.3636px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     width: 240px;
@@ -45,7 +61,7 @@ export default function TestBox() {
     justify-content: center;
     align-items: center;
 
-    border: 2px solid ${onHover ? White : kRed};
+    border: 2px solid ${kRed};
     border-radius: 1000px;
     width: 80px;
     height: 80px;
@@ -54,7 +70,7 @@ export default function TestBox() {
   const TestGuideLine = styled.div`
     width: 190px;
     height: 2px;
-    background: ${onHover ? White : WhiteGray};
+    background-color: ${WhiteGray};
     border-radius: 110px;
   `;
 
@@ -75,21 +91,46 @@ export default function TestBox() {
   `;
 
   return (
-    <TestContainer
-      onMouseEnter={() => {
-        setOnHover(true);
-      }}
-      onMouseLeave={() => {
-        setOnHover(false);
-      }}
-    >
-      <TestSVGAria>
-        <TestSVGBox>
-          <img src={onHover ? test2 : test1} />
-        </TestSVGBox>
-      </TestSVGAria>
-      <TestGuideLine />
-      <TestTextBox>반응속도 테스트</TestTextBox>
-    </TestContainer>
+    <TestAnimation>
+      <TestContainer
+        ref={TestContainerRef}
+        onMouseEnter={() => {
+          if (TestContainerRef.current !== null) {
+            TestContainerRef.current.classList.add("BackGroudColor");
+          }
+          if (TestSVGBoxRef.current !== null) {
+            TestSVGBoxRef.current.classList.add("SVGColor");
+          }
+          if (TestGuideLineRef.current !== null) {
+            TestGuideLineRef.current.classList.add("LineColor");
+          }
+          if (TestTextBoxRef.current !== null) {
+            TestTextBoxRef.current.classList.add("TextColor");
+          }
+        }}
+        onMouseLeave={() => {
+          if (TestContainerRef.current !== null) {
+            TestContainerRef.current.classList.remove("BackGroudColor");
+          }
+          if (TestSVGBoxRef.current !== null) {
+            TestSVGBoxRef.current.classList.remove("SVGColor");
+          }
+          if (TestGuideLineRef.current !== null) {
+            TestGuideLineRef.current.classList.remove("LineColor");
+          }
+          if (TestTextBoxRef.current !== null) {
+            TestTextBoxRef.current.classList.remove("TextColor");
+          }
+        }}
+      >
+        <TestSVGAria>
+          <TestSVGBox ref={TestSVGBoxRef}>
+            <img src={onHover ? test2 : test1} />
+          </TestSVGBox>
+        </TestSVGAria>
+        <TestGuideLine ref={TestGuideLineRef} />
+        <TestTextBox ref={TestTextBoxRef}>반응속도 테스트</TestTextBox>
+      </TestContainer>
+    </TestAnimation>
   );
 }
