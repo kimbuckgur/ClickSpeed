@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import test1 from "../../assets/svg/RRIcon/RRoff.svg";
 import test2 from "../../assets/svg/RRIcon/RRon.svg";
 import styled from "styled-components";
-import "./testcss.css";
 
 const kRed = "#E03131";
 const White = "#ffffff";
@@ -10,13 +9,28 @@ const WhiteGray = "#F0F0F0";
 const kBlack = "#343434";
 
 export default function TestBox() {
-  const [onHover, setOnHover] = useState<boolean>(false);
-  const TestContainerRef = useRef<HTMLButtonElement>(null);
-  const TestSVGBoxRef = useRef<HTMLDivElement>(null);
-  const TestGuideLineRef = useRef<HTMLDivElement>(null);
-  const TestTextBoxRef = useRef<HTMLDivElement>(null);
+  return (
+    <TestAnimation>
+      <TestContainer className="BackGroudColor">
+        <TestSVGAria>
+          <TestSVGBox className="SVGColor">
+            <TestSVGImgBox className="testTwoColor">
+              <img src={test2} />
+            </TestSVGImgBox>
+            <TestSVGImgBox className="testOneColor">
+              <img src={test1} />
+            </TestSVGImgBox>
+          </TestSVGBox>
+        </TestSVGAria>
+        <TestGuideLine className="LineColor"></TestGuideLine>
+        <TestTextBox className="TextColor">반응속도 테스트</TestTextBox>
+      </TestContainer>
+    </TestAnimation>
+  );
+}
 
-  const TestAnimation = styled.div`
+const TestAnimation = styled.div`
+  :hover {
     .BackGroudColor {
       background-color: ${kRed};
     }
@@ -29,108 +43,84 @@ export default function TestBox() {
     .TextColor {
       color: ${White};
     }
-  `;
+    .testOneColor {
+      opacity: 0;
+    }
+    .testTwoColor {
+      opacity: 1;
+    }
+  }
+`;
 
-  const TestContainer = styled.button`
-    cursor: pointer;
-    transition: all 0.3s;
+const TestContainer = styled.button`
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background-color: ${White};
+  box-shadow: 0px 6.54545px 16.3636px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 240px;
+  height: 240px;
+`;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const TestSVGAria = styled.div`
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s;
+  align-items: center;
+  width: 240px;
+  height: 140px;
+`;
 
-    border: none;
-    background-color: ${White};
-    box-shadow: 0px 6.54545px 16.3636px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    width: 240px;
-    height: 240px;
-  `;
+const TestSVGBox = styled.div`
+  position: relative;
 
-  const TestSVGAria = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    width: 240px;
-    height: 140px;
-  `;
+  border: 2px solid ${kRed};
+  border-radius: 1000px;
+  transition: all 0.3s;
+  width: 80px;
+  height: 80px;
+`;
 
-  const TestSVGBox = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const TestSVGImgBox = styled.div`
+  position: absolute;
+  transition: all 0.3s;
 
-    border: 2px solid ${kRed};
-    border-radius: 1000px;
-    width: 80px;
-    height: 80px;
-  `;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  const TestGuideLine = styled.div`
-    width: 190px;
-    height: 2px;
-    background-color: ${WhiteGray};
-    border-radius: 110px;
-  `;
+  width: 80px;
+  height: 80px;
+`;
 
-  const TestTextBox = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const TestGuideLine = styled.div`
+  width: 190px;
+  height: 2px;
+  background-color: ${WhiteGray};
+  transition: all 0.3s;
+  border-radius: 110px;
+`;
 
-    font-family: "NanumSquare";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
-    color: ${onHover ? White : kBlack};
+const TestTextBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  font-family: "NanumSquare";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: ${kBlack};
 
-    width: 240px;
-    height: 98px;
-  `;
-
-  return (
-    <TestAnimation>
-      <TestContainer
-        ref={TestContainerRef}
-        onMouseEnter={() => {
-          if (TestContainerRef.current !== null) {
-            TestContainerRef.current.classList.add("BackGroudColor");
-          }
-          if (TestSVGBoxRef.current !== null) {
-            TestSVGBoxRef.current.classList.add("SVGColor");
-          }
-          if (TestGuideLineRef.current !== null) {
-            TestGuideLineRef.current.classList.add("LineColor");
-          }
-          if (TestTextBoxRef.current !== null) {
-            TestTextBoxRef.current.classList.add("TextColor");
-          }
-        }}
-        onMouseLeave={() => {
-          if (TestContainerRef.current !== null) {
-            TestContainerRef.current.classList.remove("BackGroudColor");
-          }
-          if (TestSVGBoxRef.current !== null) {
-            TestSVGBoxRef.current.classList.remove("SVGColor");
-          }
-          if (TestGuideLineRef.current !== null) {
-            TestGuideLineRef.current.classList.remove("LineColor");
-          }
-          if (TestTextBoxRef.current !== null) {
-            TestTextBoxRef.current.classList.remove("TextColor");
-          }
-        }}
-      >
-        <TestSVGAria>
-          <TestSVGBox ref={TestSVGBoxRef}>
-            <img src={onHover ? test2 : test1} />
-          </TestSVGBox>
-        </TestSVGAria>
-        <TestGuideLine ref={TestGuideLineRef} />
-        <TestTextBox ref={TestTextBoxRef}>반응속도 테스트</TestTextBox>
-      </TestContainer>
-    </TestAnimation>
-  );
-}
+  width: 240px;
+  height: 98px;
+`;

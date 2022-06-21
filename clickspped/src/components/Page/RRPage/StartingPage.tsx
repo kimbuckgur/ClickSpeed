@@ -25,7 +25,7 @@ const StartingTitle = styled.p`
 const StartingLine = styled.div`
   width: 40px;
   height: 1px;
-  background: #B6B6B6;
+  background: #b6b6b6;
   border-radius: 110px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -43,6 +43,9 @@ const StartingText = styled.p`
 `;
 
 const StartingButton = styled.button`
+  cursor: pointer;
+  transition: all 0.2s;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +61,15 @@ const StartingButton = styled.button`
   height: 60px;
   background: #ffffff;
   border: 1px solid #dadada;
+  margin-top: 25px;
   border-radius: 1000px;
+  padding-top: 3px;
+
+  :hover {
+    background: #e03131;
+    color: white;
+    border: none;
+  }
 `;
 
 export default function StartingPage() {
