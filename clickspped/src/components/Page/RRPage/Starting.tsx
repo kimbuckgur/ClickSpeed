@@ -72,7 +72,7 @@ const StartingButton = styled.button`
   }
 `;
 
-export default function StartingPage() {
+export default function Starting() {
   return (
     <StartingContainer>
       <StartingTitle>반응속도 테스트</StartingTitle>

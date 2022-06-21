@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import StartingPage from "./StartingPage";
+import Starting from "./Starting";
+import Waitting from "./Waitting";
+import ClickPage from "./ClickPage"
 
 const RRPageContainer = styled.div`
   width: 100%;
@@ -11,7 +13,7 @@ const RRPageContainer = styled.div`
 export default function ReactionRatePage() {
   return (
     <RRPageContainer>
-      <StartingPage />
+      <ClickPage />
     </RRPageContainer>
   );
 }
