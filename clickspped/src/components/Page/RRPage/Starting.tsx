@@ -72,7 +72,7 @@ const StartingButton = styled.button`
   }
 `;
 
-export default function Starting() {
+const Starting: React.FC<any> = ({ setStart }) => {
   return (
     <StartingContainer>
       <StartingTitle>반응속도 테스트</StartingTitle>
@@ -80,7 +80,15 @@ export default function Starting() {
       <StartingText>
         시작버튼 클릭 후에 화면이 초록색이 된면 클리해주세요
       </StartingText>
-      <StartingButton>시작하기</StartingButton>
+      <StartingButton
+        onClick={() => {
+          setStart(true);
+        }}
+      >
+        시작하기
+      </StartingButton>
     </StartingContainer>
   );
-}
+};
+
+export default Starting;
